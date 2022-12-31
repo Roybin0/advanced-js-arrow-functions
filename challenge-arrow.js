@@ -20,17 +20,29 @@ let students = [
 ];
 
 const averagePoints = (arr, subject) => {
+     
+    let noStudents = 0;
+    let resultsArray = [];
+    let total = 0;  
     
-    arr.forEach((student) => {
-        let total = 0 
-        if (subject in arr.subjects) {
-            total = total + arr.subjects.subject
-        };
-    });
-    
-    return total;
+    for (var i = 0; i < arr.length; i++) {  
+        if (subject in arr[i].results) {
+            noStudents = noStudents + 1; 
+            resultsArray.push(arr[i].results)
+        }
+    }; 
+
+    for (var j = 0; j < resultsArray.length; j++) {
+        if (resultsArray[j][subject] > 0) {
+            total = total + resultsArray[j][subject];
+        }
+    };
+
+    let average = total / noStudents; 
+
+    return average;
 };
+    
+let averageMarks = averagePoints(students, 'maths');
 
-let averageMarks = averagePoints('John', 'english');
-
-console.log(averagePoints(students, english));
+console.log(averageMarks);
